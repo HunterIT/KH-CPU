@@ -97,19 +97,17 @@ void userInput() {
                   exit(0);
                   break;
         case 'R':
-        case 'r': printf("Display registers has not been implemented yet!");
-                  //DisplayRegisters();
+        case 'r': dump_reg();
                   break;
         case 'T':
-        case 't': printf("Trace function has not been implemented yet!");
-                  //trace();
+        case 't': fetch(mem);
+				  dump_reg();
                   break;
         case 'W':
         case 'w': WriteFile(mem);
                   break;
         case 'Z':
-        case 'z': printf("Reset function has not been implemented yet!");
-                  //Reset();
+        case 'z': reg_reset();
                   break;
         case '?':
         case 'H':
