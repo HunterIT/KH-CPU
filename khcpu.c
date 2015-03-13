@@ -63,7 +63,6 @@ void userInput() {
     unsigned char mem[MEMORY];
     unsigned int offset, row_length; /* for user input */
 
-
     while (1) {
 
     printf("\n$> ");
@@ -109,7 +108,9 @@ void userInput() {
         case 'w': WriteFile(mem);
                   break;
         case 'Z':
-        case 'z': reg_reset();
+        case 'z':
+                  reg_reset();
+                  printf("All registers / flags have been set to ZERO\n");
                   break;
         case '?':
         case 'H':
