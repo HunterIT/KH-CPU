@@ -43,7 +43,6 @@ void WriteFile(void * memory); //Write File
 void dump_memory( void *memory,unsigned int offset, unsigned int length );
 void  modify_memory(void *memory, unsigned int offset);
 int dump_reg();
-void fetch(void * memory);
+void fetch(void *memory);
 int reg_reset();
-
 

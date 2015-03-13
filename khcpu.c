@@ -23,6 +23,8 @@
 
 int main (void) {
 
+	 // Reset registers
+    reg_reset();
     displayOptions(); 
     userInput();
     return 0;
@@ -114,6 +116,7 @@ void userInput() {
         case 'h': displayOptions();
                   break;
         default: printf("Nothing selected");
+				 break;
     }
     } 
 } 

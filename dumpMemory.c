@@ -10,7 +10,7 @@
 
 #include "khcpu.h"
 
-void dump_memory(void *memory, unsigned int offset, unsigned int length){
+void dump_memory(void * memory, unsigned int offset, unsigned int length){
     unsigned int i;
     unsigned int lineLength = 0x10;
     unsigned char line[0x10];
