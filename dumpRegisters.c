@@ -10,16 +10,16 @@
  */
  
 #include "khcpu.h"
- 
+
+
 int dump_reg(){
 	
     unsigned short ir0, ir1;
     unsigned int i;
-    unsigned int linebreak = 6;
 
     /* Print regsiter file */
     for(i = 0; i < RF_SIZE; i ++){
-        if(i % linebreak == 0){
+        if(i % 6 == 0){
             printf("\n");
         }
         
@@ -41,8 +41,8 @@ int dump_reg(){
 
     printf("\t SZC:%c%c%c", f_sign, f_zero, f_carry);
     
-    ir0 = getir0(ir);
-    ir1 = getir1(ir);
+    ir0 = ir >> 16;
+    ir1 = ir & 0x0000FFFF;
       
     printf("\n	MAR:%8.8X", mar);
     printf("\t	MBR:%8.8X", mbr);
@@ -54,13 +54,5 @@ int dump_reg(){
     return 0;
 }
 
-//Get the first IR register
-unsigned short getir0(unsigned long ir){
-    return ir >> 16;
-}    
 
-// Get the second IR register 
-unsigned short getir1(unsigned long ir){
-	unsigned int temp = ir << 0x10;
-	return temp >> 0x10;
-}
+

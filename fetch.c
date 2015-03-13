@@ -13,25 +13,25 @@
  
 #include "khcpu.h"
 
+
+
 void fetch(void * memory){
 	
-    unsigned int i, cycles;
-   
-    cycles = REG_SIZE / ((int)sizeof(char));
-
+    unsigned int i;
+    unsigned int j = REG_SIZE;
+    
     //PC to MAR
     mar = regFile[REG_PC];
     
+    printf("MAR = %lu", mar);
+    printf("SIZE = %d", j);
     
     //Memory[MAR to MBR
-    for(i = 0; i < cycles; i++){
+    for(i = 0; i < j; i++){
         mbr = mbr << 8;
-        //Adding the memory at mar location to mbr
         mbr += *((unsigned char*)memory + (mar + i));
     }    
-    //MBR to IR
-    ir = mbr;
     
-    //Incrase the PC by 1
+    ir = mbr;
     regFile[REG_PC] += REG_SIZE;
 }

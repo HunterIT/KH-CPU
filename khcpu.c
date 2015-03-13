@@ -58,7 +58,7 @@ void userInput() {
 
     char input;
     int file_result;
-    char mem[MEMORY];
+    unsigned char mem[MEMORY];
     unsigned int offset, row_length; /* for user input */
 
 
@@ -73,7 +73,7 @@ void userInput() {
 				  fscanf(stdin, "%X", &offset);
 				  printf("Select a length> ");
 				  fscanf(stdin, "%X", &row_length);
-				  MemDump((void *) mem, offset, row_length);
+				  dump_memory((void *) mem, offset, row_length);
 				  getchar();
                   break;
         case 'G':

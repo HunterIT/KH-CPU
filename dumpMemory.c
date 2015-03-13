@@ -1,5 +1,5 @@
 /**************************
- * Name: dumpMemoryMod.c
+ * Name: dumpMemory.c
  * Author: Kenneth Hunter
  * URL: http://www.hunterit.ca
  * Email: kenneth@hunterit.ca
@@ -10,82 +10,52 @@
 
 #include "khcpu.h"
 
-void MemDump(void *memory, unsigned int offset, unsigned int length)
-{
-	unsigned int i, j;  	//keep track of the inner for loop 
-	unsigned int row = 0x10;   //The max a row can be
-	length--;
-	
-	/** 
-	 * The following inner for loop prints out the all the 
-	 * HEX values of the loop by reading all the memory componets
-	 * of the loaded file into the memory address
-	 */ 
-	
-	for (i = offset; i < (offset + length); i += row) {
-		
-		//Prints out a the HEX values here
-		printf("%4X\t", i);
-	
-		/** every row that is here, it will print out column if it
-		 * is greater then row length
-		 */ 
-		for(j = i; j < (i + row); j++) {
-			
-			printf("%2X ", *((char *) memory + j));
-			
-			//Break if it's over the length of the row
-			if(j == (offset + length)) break;
-		} 
-		
-		//Break to a new line 
-		printf("\n\t");
+void dump_memory(void *memory, unsigned int offset, unsigned int length){
+    unsigned int i;
+    unsigned int lineLength = 0x10;
+    unsigned char line[0x10];
+    unsigned int count = 0;
 
-
-		/** 
-		* The next row below is used to print out the "actual" values of the
-		* loaded file. For a text file, here is where it is display the actual
-		* human readable content here. 
-		*/ 
-		for(j = i; j < (i + row); j++) {
-			if(isprint((int) *((char *) memory + j)))
-				printf(" %c ", *((char *) memory + j));
-			else
-				printf(" . ");
-				
-			if(j == (offset + length)) break;
-		}
-		
-		printf("\n");
-		
-		if(j == length) break;
-	}
-return;
-}		
-
-void modify_memory(void *memory, unsigned int offset)
-{
-    char user_input;
-    printf("End the Memory Mod by '.'");
+    while(count < length){
     
-    //Loop untill required by the user to stop
-    while(1) {
-		
-		//Display current offset
-        fprintf(stdout, "%4X> ", offset);
+        if(offset == MEMORY){
+            break;
+        } 
+
+        //Print the Offset & Block Number
+        printf("%4.4X\t", offset);
         
-        while(getchar() != '\n');
        
-		//Break if user has terminated it
-        if((user_input = getchar()) == '.')
-            break;
+        // Create the line of the HEX Digits
+        for(i = 0; i < 0x10; i++, offset++, count++){
+			
+			//*CHECKS* to see if the pointer is not going out of bounds
+            if(offset == MEMORY){
+                lineLength = i;
+                break;
+            }
             
-         //Change the memory location
-        *((char *) memory + offset) = user_input;
+            //*CHECKS* to see if it's staying the limited length
+            if(count == length){
+                lineLength = i;
+                break;
+            }      
+            
+            line[i] = *((char*)memory + offset);
+            printf("%2.2X ", line[i]);
+        }
+        printf("\n\t");
         
-        if(++offset == MEMORY)
-            break;
+        
+        //Next Line, PRINT OUT ASCII VALUES
+        for(i = 0; i < lineLength; i++){
+            if(isprint(line[i])){
+                printf(" %c ", line[i]);  //Prints out ASCII if valid
+            }else{
+                printf(" . ");		//Prints out DOT if not valid
+            }    
+        }
+        //Do it Again.... 
+        printf("\n");
     }
-    
-    return;
 }
