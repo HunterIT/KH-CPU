@@ -30,9 +30,9 @@
  
  
 //Regisiters and Flags
- static unsigned long regFile[RF_SIZE];
- static unsigned char f_sign, f_zero, f_carry, f_stop, f_ir;
- static unsigned long mbr, mar, ir;
+ unsigned long regFile[RF_SIZE];
+ unsigned char f_sign, f_zero, f_carry, f_stop, f_ir;
+ unsigned long mbr, mar, ir;
  
 //User defined function prototypes
 void displayOptions (); 		 //Option Menu
