@@ -1,3 +1,1 @@
 gcc -o khcpu *.c
-
-
