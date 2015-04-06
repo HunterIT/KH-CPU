@@ -41,16 +41,16 @@ int dump_reg(){
         }
     switch(i) {
 		case REG_SP: 
-				printf(" SP:%8.8X ", regFile[REG_SP]);
+				printf(" SP:%08X ", regFile[REG_SP]);
 				break;
 		case REG_LR: 
-				printf(" LR:%8.8X ",  regFile[REG_LR]);
+				printf(" LR:%08X ",  regFile[REG_LR]);
 				break;
 		case REG_PC:
-				printf(" PC:%8.8X ",  regFile[REG_PC]);
+				printf(" PC:%08X ",  regFile[REG_PC]);
 				break;
 		default:
-				printf("r%2.2d:%8.8X ", i,  regFile[i]);
+				printf("r%2.2d:%08X ", i,  regFile[i]);
 				break;
 		} 
 	}
@@ -60,10 +60,10 @@ int dump_reg(){
     ir1 = ir & 0x0000FFFF;
     
       
-    printf("\n	MAR:%8.8X", mar);
-    printf("\t	MBR:%8.8X", mbr);
-    printf("\t  IR0:%4.4X", ir0);
-    printf("\t  IR1:%4.4X", ir1);
+    printf("\n	MAR:%08X", mar);
+    printf("\t	MBR:%08X", mbr);
+    printf("\t  IR0:%04X", ir0);
+    printf("\t  IR1:%04X", ir1);
     printf("\t  Stop:%c ", f_stop);
     printf("\t  IR Flag:%c\n", f_ir);
   

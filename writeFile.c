@@ -12,11 +12,7 @@
  */
  
  #include "khcpu.h"
- /**
- * WriteFile
- * 
- * Wirte a file to the file
- */
+
 void WriteFile(void * mem) {
 
     FILE *f;  //The File

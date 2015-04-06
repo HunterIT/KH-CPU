@@ -23,8 +23,7 @@
 
 int main (void) {
 
-	 // Reset registers
-    reg_reset();
+    reg_reset();  // Reset registers
     displayOptions(); 
     userInput();
     return 0;
@@ -58,7 +57,8 @@ void displayOptions () {
  */
 void userInput() {
 
-    char input;
+    unsigned char input[BUFFER_SIZE];
+    unsigned int i;
     int file_result;
     unsigned char mem[MEMORY];
     unsigned int offset, row_length; /* for user input */
@@ -66,9 +66,14 @@ void userInput() {
     while (1) {
 
     printf("\n$> ");
-    fgets(&input, 3, stdin);
+    fgets(input, BUFFER_SIZE, stdin);
+    
+    //make sure input is lower case
+    for(i = 0; i < strlen(input); i++){
+            input[i] = tolower(input[i]);    
+        }    
    
-    switch (input) {
+    switch (input[0]) {
         case 'D':
         case 'd': printf("Select an Offset> ");
 				  fscanf(stdin, "%X", &offset);
@@ -78,9 +83,8 @@ void userInput() {
 				  getchar();
                   break;
         case 'G':
-        case 'g': printf("Go function has not been implemented yet!");
-                  //go();
-                  break;
+        case 'g': while (!f_stop) instCycle(mem);
+				  break;
         case 'L':
         case 'l': if((file_result = LoadFile(mem, MEMORY)) > 0) 
                       printf("The Loaded file has %d bytes that were read", file_result);
@@ -120,6 +124,4 @@ void userInput() {
 				 break;
     }
     } 
-} 
-
-
+}
