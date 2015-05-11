@@ -68,12 +68,6 @@ static uint8_t stop_flag;
 static uint8_t ir_flag;
 
 /* Special Registers in Register File Offsets */
-#define RF_SP   0xD
-#define RF_LR   0xE
-#define RF_PC   0xF
-#define SP      registers[RF_SP]
-#define LR      registers[RF_LR]
-#define PC      registers[RF_PC]
 #define LIST    currentI & 0xFF
 
 //User defined values
@@ -142,10 +136,10 @@ static uint8_t ir_flag;
 
 /* Immediate OpCodes */
 #define MOVEOPCODE ((currentI >> 12) & 0x3)
-#define MOV 0x0 == MOVEOPCODE
-#define CMP 0x1 == MOVEOPCODE
-#define ADD 0x2 == MOVEOPCODE
-#define SUB 0x3 == MOVEOPCODE
+#define IMM_MOV 0x0 == MOVEOPCODE
+#define IMM_CMP 0x1 == MOVEOPCODE
+#define IMM_ADD 0x2 == MOVEOPCODE
+#define IMM_SUB 0x3 == MOVEOPCODE
 
 /* Branch Condition Codes */
 #define MOVEBRANCH ((currentI >> 8) & 0xF)

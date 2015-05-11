@@ -565,20 +565,20 @@ void execute(void * memory){
 	}
 	else if (IMMEDIATE){
 		/* Move immediate value into registers at RD */
-		if (MOV){
+		if (IMM_MOV){
 			registers[RD] = IMM_VALUE;
 			setALUFlag(registers[RD]);
 		}
-		else if (CMP){
+		else if (IMM_CMP){
 			setALUFlag(registers[RD] + ~IMM_VALUE + 1);
 			carry_flag = checkIfCarry(registers[RD], ~IMM_VALUE, 0);
 		}
-		else if (ADD){
+		else if (IMM_ADD){
 			setALUFlag(registers[RD] + IMM_VALUE);
 			carry_flag = checkIfCarry(registers[RD], IMM_VALUE, 0);
 			registers[RD] = registers[RD] + IMM_VALUE;
 		}
-		else if (SUB){
+		else if (IMM_SUB){
 			setALUFlag(registers[RD] + ~IMM_VALUE + 1);
 			carry_flag = checkIfCarry(registers[RD], ~IMM_VALUE, 1);
 			registers[RD] = registers[RD] + ~IMM_VALUE + 1;
