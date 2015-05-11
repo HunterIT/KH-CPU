@@ -1,4 +1,4 @@
-t/**************************
+/**************************
 * Name: KH-CPU.c
 * Author: Kenneth Hunter
 * URL: http://www.hunterit.ca
@@ -169,9 +169,9 @@ void reset() {
 	mbr = RESET;
 	ir = RESET;
 	currentI = RESET;
-
-	unsigned int i;
-
+ 
+	unsigned int i = 0;
+	
 	/* All displayed registers */
 	for (i = 0; i < 0x10; i++){
 		registers[i] = RESET;
@@ -824,5 +824,3 @@ void modify_memory(void * memory, unsigned int offset){
 		}
 	}
 }
-
-
