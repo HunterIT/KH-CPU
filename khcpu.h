@@ -68,6 +68,12 @@ static uint8_t stop_flag;
 static uint8_t ir_flag;
 
 /* Special Registers in Register File Offsets */
+#define RF_SP   0xD
+#define RF_LR   0xE
+#define RF_PC   0xF
+#define SP      registers[RF_SP]
+#define LR      registers[RF_LR]
+#define PC      registers[RF_PC]
 #define LIST    currentI & 0xFF
 
 //User defined values
@@ -113,7 +119,6 @@ static uint8_t ir_flag;
 #define OPERATION	((currentI >> 8) & 0xF)
 #define RN			((currentI >> 4) & 0xF)
 #define RD			currentI & 0xF
-#define OPCODE      ((currentI >> 12) & 0x3)
 
 /* Declare the OPCODES for DATA PROCESSING */
 #define PROCESSING ((currentI >> 8) & 0xF)

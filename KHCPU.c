@@ -11,7 +11,7 @@
 *          and control on a virtual realtime CPU. The software has
 *          the functions that include
 *  		  - Dump Memory
-*            - Go (Run the entire loaded program
+*            - Go (Run the entire loaded programm
 *            - Load a file into memory
 *            - Modify Memory
 *            - Display current registers
