@@ -21,8 +21,8 @@ You will need to run "khcpu" binary file once created
 * Memory dumper
 * Dump current registers on screen
 * Single steps though the program counter
-
-## Functions coming soon
-
 * excute program
+
+## Status
+No Future Updates
 
